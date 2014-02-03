@@ -77,7 +77,7 @@ To get a pivoted table like this:
 |Pepito|Wrench|0|0|0|0|1|
 |Manu|Hammer|0|3|0|0|0|
 |Manu|Wrench|28|0|0|0|0|
-|Richal|Hammer|34|15|42|17|0|
+|Richal|Hammer|34|15|42|22|0|
 
 
 Function Parameters/Options
