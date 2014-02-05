@@ -39,7 +39,7 @@ Additionally, if you really feel in the mood of rewarding me, just feel free for
 Installation and usage
 ======================
 
-Please visit my page about PivotMyTable in my personal web:
+Please visit my page about PivotMyTable <a href="http://imasdemase.com/en/programacion-2/tablas-cruzadas-en-postgresql-pivotmytable/" target="_blank">here.</a>
 
 
 
