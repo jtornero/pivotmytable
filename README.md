@@ -35,6 +35,11 @@ Of course, no donations or fees are required for using PivotMyTable in your data
 
 Additionally, if you really feel in the mood of rewarding me, just feel free for asking me about my postal address and send me a postcard from where you live. I'll be proud of showing it to my kid. 
 
+Changelog   
+=========
+2014/03/18 
+-    Added support for table output.
+-    Added provisional normalization of parameters to avoid problems with spaces. 
 
 Installation and usage
 ======================
