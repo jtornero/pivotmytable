@@ -53,7 +53,7 @@ drop_ex_tbl (boolean):  pivotMyTablee checks if the output table specified with 
                         drop the existing table. By default, drop_ex_tbl is set to
                         FALSE so the function exists with a warning if output_table
                         already exists in the database.
-output (boolean):       This option enables the output to a view instead of to a table.
+as_view (boolean):       This option enables the output to a view instead of to a table.
                         To enable view output, set it to TRUE. Defaults to FALSE.
                         
 */
