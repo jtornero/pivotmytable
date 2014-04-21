@@ -44,8 +44,6 @@ Changelog
 Installation and usage
 ======================
 
-Please visit my page about PivotMyTable <a href="http://imasdemase.com/en/programacion-2/tablas-cruzadas-en-postgresql-pivotmytable/" target="_blank">here.</a>
-
-
+Please visit my page about PivotMyTable <a href="http://imasdemase.com/en/programacion-2/tablas-cruzadas-en-postgresql-pivotmytable/" target="_blank">here.</a> You can find a SQL script which creates a table with the sample data under the folder *example_data* of this repository.
 
 
