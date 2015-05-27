@@ -80,10 +80,10 @@ AS $$
     # Time to check if input_table,group_fields, pivot_field and value_field parameters are OK
     
         
-    tablesQuery = plpy.execute("select table_name from information_schema.tables")
+    tablesQuery = plpy.execute("select relname table_name from pg_catalog.pg_stat_all_tables")
     tableList = [tablename["table_name"] for tablename in tablesQuery]
     
-    inputTableColumnsQuery = plpy.execute("select column_name from information_schema.columns where table_name='%s'" %input_table.replace(" ",""))
+    inputTableColumnsQuery = plpy.execute("select attname column_name from pg_attribute where attrelid = (current_schema()||'.'||'%s')::regclass and attnum > 0 AND NOT attisdropped" %input_table.replace(" ",""))
     inputTableColumnsList = [col["column_name"] for col in inputTableColumnsQuery]
     
     if input_table.replace(" ","") not in tableList:
@@ -148,9 +148,9 @@ AS $$
     # we need to get both the precision (number of decimals) and the maximum
     # value of its aggregate, to prevent overflows when aggregating the data
     
-    # First we make the query to information_schema.columns. 
+    # First we make the query to pg_attribute to get columns details. 
     
-    columnPropertiesQuery = plpy.execute("select data_type,numeric_scale from information_schema.columns where table_name = '%s' and column_name='%s'" %(input_table.replace(" ",""),value_field.replace(" ","")))
+    columnPropertiesQuery = plpy.execute("SELECT  atttypid::regtype AS data_type, CASE WHEN atttypid IN (21, 23, 20) THEN 0 WHEN atttypid IN (1700) THEN CASE WHEN atttypmod = -1 THEN null ELSE (atttypmod - 4) & 65535 END ELSE null END AS numeric_scale from pg_attribute where attrelid = (current_schema()||'.'||'%s')::regclass and attname = '%s' and attnum > 0 and not attisdropped" %(input_table.replace(" ",""),value_field.replace(" ","")))
     
     # Due to the nature of the PLyResult object returned by plpy.execute,
     # getting the columns properties is a little tricky
@@ -187,7 +187,7 @@ AS $$
     groupingColumns=list()
     idx=1
     for field in gfields:
-        columnType = plpy.execute("select data_type from information_schema.columns where table_name = '%s' and column_name='%s'" %(input_table.replace(" ",""),field.replace(" ","")))
+        columnType = plpy.execute("SELECT format_type(atttypid, atttypmod) AS data_type from pg_attribute where attrelid = (current_schema()||'.'||'%s')::regclass and attname = '%s' and attnum > 0 and not attisdropped" %(input_table.replace(" ",""),field.replace(" ","")))
         tc=[columna["data_type"] for columna in columnType]
         
         # We need this to recover the grouped fields after crosstab execution 
