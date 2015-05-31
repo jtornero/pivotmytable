@@ -40,6 +40,7 @@ Changelog
 2014/03/18 
 -    Added support for table output.
 -    Added provisional normalization of parameters to avoid problems with spaces.
+
 2015/05/31 This changes thanks to @JohnDeGitt
 -    Use pg_attribute (Postgresql catalog table) instead of
 information_schema to get metadata on Postgresql relations. It is
