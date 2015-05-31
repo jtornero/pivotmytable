@@ -39,7 +39,16 @@ Changelog
 =========
 2014/03/18 
 -    Added support for table output.
--    Added provisional normalization of parameters to avoid problems with spaces. 
+-    Added provisional normalization of parameters to avoid problems with spaces.
+2015/05/31 This changes thanks to @JohnDeGitt
+-    Use pg_attribute (Postgresql catalog table) instead of
+information_schema to get metadata on Postgresql relations. It is
+faster and contains details about all relations: tables, views and
+materialized views.
+-    Use current_schema() as a relation name prefix to make sure
+that it refers current schema (the same names can exist in different
+schemas).
+
 
 Installation and usage
 ======================
